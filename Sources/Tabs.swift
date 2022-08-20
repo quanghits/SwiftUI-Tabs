@@ -12,7 +12,7 @@ struct Tab {
     var title: String
 }
 
-struct Tabs<Content: View>: View
+public struct Tabs<Content: View>: View
 {
     var tabs: [String]
     @Binding var selectedTab: Int
@@ -27,7 +27,7 @@ struct Tabs<Content: View>: View
     var padding: CGFloat = 15
     
     
-    var body: some View
+    public var body: some View
     {
         VStack (spacing: 1)
         {
