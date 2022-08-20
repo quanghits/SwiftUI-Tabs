@@ -16,34 +16,33 @@ Just instantiate and bind it to your state.
 
 ### Simple 
 ```swift
-        Tabs(tabs:  ["Music", "Movies", "Books", "Games"],
-             selectedTab: $selectedTab,
-             content: {
-                Text("Music").font(.system(size: 15)).foregroundColor(.black).tag(0)
-                Text("Movies").tag(1)
-                Text("Books").tag(2)
-                Text("Games").tag(3)
-             })
+Tabs(tabs:  ["Music", "Movies", "Books", "Games"],
+     selectedTab: $selectedTab,
+     content: {
+        Text("Music").font(.system(size: 15)).foregroundColor(.black).tag(0)
+        Text("Movies").tag(1)
+        Text("Books").tag(2)
+        Text("Games").tag(3)
+     })
 ```
 
 ### Advanced 
 ```swift
-
-        Tabs(tabs:  ["Music", "Movies", "Books", "Games"],
-             selectedTab: $selectedTab,
-             content: {
-                Text("Music").font(.system(size: 15)).foregroundColor(.black).tag(0)
-                Text("Movies").tag(1)
-                Text("Books").tag(2)
-                Text("Games").tag(3)
-             },
-             backgroundColor: .white,
-             contentColor: .white,
-             textColor: .black.opacity(0.4),
-             activeTextColor: .black.opacity(0.8),
-             barIndicatorColor: .blue.opacity(0.7),
-             textSize: 16,
-             padding: 15)
+Tabs(tabs:  ["Music", "Movies", "Books", "Games"],
+     selectedTab: $selectedTab,
+     content: {
+        Text("Music").font(.system(size: 15)).foregroundColor(.black).tag(0)
+        Text("Movies").tag(1)
+        Text("Books").tag(2)
+        Text("Games").tag(3)
+     },
+     backgroundColor: .white,
+     contentColor: .white,
+     textColor: .black.opacity(0.4),
+     activeTextColor: .black.opacity(0.8),
+     barIndicatorColor: .blue.opacity(0.7),
+     textSize: 16,
+     padding: 15)
 ```
 
 ## Suggestions or feedback?
