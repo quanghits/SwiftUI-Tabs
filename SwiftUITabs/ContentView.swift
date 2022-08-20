@@ -35,6 +35,10 @@ struct ContentView: View
                             Text("Games").foregroundColor(.black).tag(3)
                          })
                     
+                    
+//                    SlidingTabView(tabs: [""], selectedTab: $selectedTab, content: {
+//                        Text("SFA")
+//                    })
                 }
                 .frame(height: geo.size.height, alignment: .bottom)
                 .navigationBarTitleDisplayMode(.inline)

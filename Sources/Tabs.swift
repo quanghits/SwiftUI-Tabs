@@ -14,24 +14,48 @@ struct Tab {
 }
 
 @available(iOS 14.0, *)
-public struct Tabs<Content: View>: View
+public struct Tabs<Content>: View where Content : View
 {
     var tabs: [String]
     @Binding var selectedTab: Int
-    @ViewBuilder var content: Content
-    
-    var backgroundColor: Color = .white
-    var contentColor: Color = .white
-    var textColor: Color = .black.opacity(0.4)
-    var activeTextColor: Color = .black.opacity(0.8)
-    var barIndicatorColor: Color = .blue.opacity(0.7)
-    var textSize: CGFloat = 16
-    var padding: CGFloat = 15
-    
-    
+    @ViewBuilder var content: () -> Content
+
+    var backgroundColor: Color
+    var contentColor: Color
+    var textColor: Color
+    var activeTextColor: Color
+    var barIndicatorColor: Color
+    var textSize: CGFloat
+    var padding: CGFloat
+
+
+    public init(tabs: [String],
+                selectedTab: Binding<Int>,
+                @ViewBuilder content: @escaping () -> Content,
+                backgroundColor: Color = .white,
+                contentColor: Color = .white,
+                textColor: Color = .black.opacity(0.4),
+                activeTextColor: Color = .black.opacity(0.8),
+                barIndicatorColor: Color = .blue.opacity(0.7),
+                textSize: CGFloat = 16,
+                padding: CGFloat = 15)
+    {
+        self.tabs = tabs;
+        self._selectedTab = selectedTab;
+        self.content = content;
+        self.backgroundColor = backgroundColor;
+        self.contentColor = contentColor;
+        self.textColor = textColor;
+        self.activeTextColor = activeTextColor;
+        self.barIndicatorColor = barIndicatorColor;
+        self.textSize = textSize;
+        self.padding = padding;
+    }
+
+
     public var body: some View
     {
-        VStack (spacing: 1)
+        return VStack (spacing: 1)
         {
             // TABS | TITLE
             ScrollView(.horizontal, showsIndicators: false) {
@@ -52,7 +76,7 @@ public struct Tabs<Content: View>: View
                                     }
                                     .padding(.horizontal, padding)
                                     .foregroundColor(selectedTab == row ? activeTextColor : textColor)
-                                    
+
                                     // Bar Indicator
                                     RoundedRectangle(cornerRadius: 2)
                                         .fill(barIndicatorColor)
@@ -74,12 +98,10 @@ public struct Tabs<Content: View>: View
             }
             .background(backgroundColor)
             .shadow(color: .black.opacity(0.2), radius: 1, x: 0, y: -0.5)
-            
+
             // TABS | CONTENT
             TabView(selection: $selectedTab.animation(),
-                    content: {
-                content
-            })
+                    content: self.content)
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .frame(height: 300)
         }
@@ -90,7 +112,7 @@ public struct Tabs<Content: View>: View
 @available(iOS 14.0, *)
 struct Tabs_Previews: PreviewProvider {
     static var previews: some View {
-        
+
         Tabs(tabs:  ["Music", "Movies", "Books", "Games"],
              selectedTab: .constant(0),
              content: {
