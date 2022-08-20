@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+@available(iOS 13.0, *)
 struct Tab {
     var icon: Image?
     var title: String
 }
 
+@available(iOS 13.0, *)
 public struct Tabs<Content: View>: View
 {
     var tabs: [String]
@@ -85,6 +87,7 @@ public struct Tabs<Content: View>: View
     }
 }
 
+@available(iOS 13.0, *)
 struct Tabs_Previews: PreviewProvider {
     static var previews: some View {
         
