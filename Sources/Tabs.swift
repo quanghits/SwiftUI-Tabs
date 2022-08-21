@@ -27,6 +27,7 @@ public struct Tabs<Content>: View where Content : View
     var barIndicatorColor: Color
     var textSize: CGFloat
     var padding: CGFloat
+    var heightOfContent: CGFloat
 
 
     public init(tabs: [String],
@@ -37,6 +38,7 @@ public struct Tabs<Content>: View where Content : View
                 textColor: Color = .black.opacity(0.4),
                 activeTextColor: Color = .black.opacity(0.8),
                 barIndicatorColor: Color = .blue.opacity(0.7),
+                heightOfContent: CGFloat = 300,
                 textSize: CGFloat = 16,
                 padding: CGFloat = 15)
     {
@@ -50,6 +52,7 @@ public struct Tabs<Content>: View where Content : View
         self.barIndicatorColor = barIndicatorColor;
         self.textSize = textSize;
         self.padding = padding;
+        self.heightOfContent = heightOfContent;
     }
 
 
@@ -103,7 +106,7 @@ public struct Tabs<Content>: View where Content : View
             TabView(selection: $selectedTab.animation(),
                     content: self.content)
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .frame(height: 300)
+            .frame(height: heightOfContent)
         }
         .background(contentColor)
     }
@@ -126,6 +129,7 @@ struct Tabs_Previews: PreviewProvider {
              textColor: .black.opacity(0.4),
              activeTextColor: .black.opacity(0.8),
              barIndicatorColor: .blue.opacity(0.7),
+             heightOfContent: 300,
              textSize: 16,
              padding: 15)
     }
